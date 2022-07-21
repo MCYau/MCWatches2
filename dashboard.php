@@ -17,7 +17,7 @@ include("auth_session.php");
     </div>
 
 <?php 
-  header( "refresh:3; url=index.php" ); 
+  header( "refresh:3; url=products.php" ); 
 ?>
 </body>
 </html>
