@@ -20,10 +20,26 @@
                      AND password='" . md5($password) . "'";
         $result = mysqli_query($con, $query) or die(mysql_error());
         $rows = mysqli_num_rows($result);
+
+        // Check isAdmin is exist in the database
+        $adminQuery    = "SELECT * FROM `users` WHERE username='$username'
+                AND isAdmin = 1";
+        $adminResult = mysqli_query($con, $adminQuery);
+        $adminRows = mysqli_num_rows($adminResult);
+        
         if ($rows == 1) {
-            $_SESSION['username'] = $username;
-            // Redirect to user dashboard page
-            header("Location: dashboard.php");
+            if ($adminRows == 1){
+                $_SESSION['username'] = $username;
+                /* Redirect to user dashboard page*/
+                echo "You are now login as admin.<br>";
+                echo "Redirect you to admin dashboard.";
+                header("Location: admin.php");
+            }else {
+                $_SESSION['username'] = $username;
+                /* Redirect to user dashboard page*/
+                header("Location: dashboard.php");
+            }
+            
         } else {
             echo "<div class='form'>
                   <h3>Incorrect Username/password.</h3><br/>

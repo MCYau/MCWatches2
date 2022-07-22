@@ -15,7 +15,6 @@ include("auth_session.php");
         <p>You are now user dashboard page.</p>
         <p><a href="logout.php">Logout</a></p>
     </div>
-
 <?php 
   header( "refresh:3; url=products.php" ); 
 ?>

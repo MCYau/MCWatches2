@@ -1,5 +1,6 @@
 <?php
-session_start();
+//session_start();
+include("auth_session.php"); // new
 require_once("db.php");
 $db_handle = new DBController();
 if(!empty($_GET["action"])) {
@@ -48,6 +49,7 @@ switch($_GET["action"]) {
 <TITLE>Simple PHP Shopping Cart</TITLE>
 <link href="productsStyle.css" type="text/css" rel="stylesheet" />
 </HEAD>
+<p>Hey, <?php echo $_SESSION['username']; ?>!</p>
 <BODY>
 <div id="shopping-cart">
 <div class="txt-heading">Shopping Cart</div>
