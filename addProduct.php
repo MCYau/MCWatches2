@@ -28,20 +28,21 @@
         $image =  $_REQUEST['image'];
         $price = $_REQUEST['price'];
          
-        $lastId = "SELECT id FROM tblproduct ORDER BY id DESC LIMIT 1";
+        /*$lastId = "SELECT id FROM tblproduct ORDER BY id DESC LIMIT 1";
         //$lastIdData = mysqli_query($conn, $lastId);
         $lastIdData = $conn->query($lastId);
-        $lastIdData = intval($lastIdData[0])+1;
+        //$lastIdData = intval($lastIdData[0])+1;*/
 
         // Performing insert query execution
         // here our table name is tblproduct
-        $sql = "INSERT INTO tblproduct  VALUES ('$lastIdData','$name',
+        $sql = "INSERT INTO tblproduct  VALUES (NULL,'$name',
             '$code','$image','$price')";
          
         if(mysqli_query($conn, $sql)){
             echo "<h3>data stored in a database successfully."
-                . " Please browse your localhost php my admin"
+                . " You will be redirected to admin page"
                 . " to view the updated data</h3>";
+                header( "refresh:2; url=admin.php" ); 
  
             echo nl2br("\n$name\n $code\n "
                 . "$image\n $price");

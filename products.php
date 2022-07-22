@@ -50,6 +50,7 @@ switch($_GET["action"]) {
 <link href="productsStyle.css" type="text/css" rel="stylesheet" />
 </HEAD>
 <p>Hey, <?php echo $_SESSION['username']; ?>!</p>
+<a href="logout.php">Logout</a>
 <BODY>
 <div id="shopping-cart">
 <div class="txt-heading">Shopping Cart</div>
@@ -94,6 +95,7 @@ if(isset($_SESSION["cart_item"])){
 <td align="right" colspan="2"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
 <td></td>
 </tr>
+<button><?php foreach ($_SESSION["cart_item"] as $item){echo $item["image"];} ?></button>
 </tbody>
 </table>		
   <?php
