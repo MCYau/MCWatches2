@@ -8,6 +8,7 @@
 <body>
 <?php
     require('db.php');
+    date_default_timezone_set('Asia/Singapore');
     // When form submitted, insert values into the database.
     if (isset($_REQUEST['username'])) {
         // removes backslashes

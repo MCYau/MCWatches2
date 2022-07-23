@@ -2,6 +2,7 @@
 //session_start();
 include("auth_session.php"); // new
 require_once("db.php");
+date_default_timezone_set('Asia/Singapore');
 $db_handle = new DBController();
 if(!empty($_GET["action"])) {
 switch($_GET["action"]) {
@@ -51,6 +52,7 @@ switch($_GET["action"]) {
 </HEAD>
 <p>Hey, <?php echo $_SESSION['username']; ?>!</p>
 <a href="logout.php">Logout</a>
+<a href="trackorder.php">Track Order</a>
 <BODY>
 <div id="shopping-cart">
 <div class="txt-heading">Shopping Cart</div>
@@ -74,6 +76,7 @@ if(isset($_SESSION["cart_item"])){
 </tr>	
 <?php	
 	$username = $_SESSION['username'];
+	$orderDateTime = date("Y-m-d H:i:s");
     foreach ($_SESSION["cart_item"] as $item){
         $item_price = $item["quantity"]*$item["price"];
 		?>
@@ -89,28 +92,29 @@ if(isset($_SESSION["cart_item"])){
 				$total_quantity += $item["quantity"];
 				$total_price += ($item["price"]*$item["quantity"]);
 				$subTotal = $item["price"] * $item["quantity"];
-				echo $subTotal;
-
-				if(isset($_GET["action"])=="checkout"){
+				//echo "<div>.$_GET['action'].</div>";
+				if(isset($_GET["action"]) && $_GET["action"]=="checkout"){
 					$checkoutsql = 'INSERT INTO orders VALUES (NULL, "'.$_SESSION['username'].'",
-					"'.$item['name'].'","'.$item['quantity'].'","'.$subTotal.'")';
+					"'.$item['name'].'","'.$item['quantity'].'","'.$subTotal.'","'.$item['image'].'","'.$orderDateTime.'")';
 					if(mysqli_query($con, $checkoutsql)){
-						echo "<h3>data stored in database successfully.";
+						//echo '<script>alert("Order has been confirmed")</script>';
+						//header("Location: products.php?action=empty", TRUE, 301);	
+						echo "<script>alert('Order has been confirmed.') ; window.location.href = 'products.php?action=empty'</script>";
 					}else{
 						echo "ERROR: Checkout $sql. "
 							. mysqli_error($con);
 					}
 				}
 		}
+		
 		?>
-
+		
 <tr>
 <td colspan="2" align="right">Total:</td>
 <td align="right"><?php echo $total_quantity; ?></td>
 <td align="right" colspan="2"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
 <td></td>
 </tr>
-<button><?php foreach ($_SESSION["cart_item"] as $item){echo $item["image"];} ?></button>
 </tbody>
 </table>		
   <?php
