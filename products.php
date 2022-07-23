@@ -70,8 +70,10 @@ if(isset($_SESSION["cart_item"])){
 <th style="text-align:right;" width="10%">Unit Price</th>
 <th style="text-align:right;" width="10%">Price</th>
 <th style="text-align:center;" width="5%">Remove</th>
+<th style="text-align:center;"><a href="products.php?action=checkout">Check Out</a></th>
 </tr>	
-<?php		
+<?php	
+	$username = $_SESSION['username'];
     foreach ($_SESSION["cart_item"] as $item){
         $item_price = $item["quantity"]*$item["price"];
 		?>
@@ -86,6 +88,19 @@ if(isset($_SESSION["cart_item"])){
 				<?php
 				$total_quantity += $item["quantity"];
 				$total_price += ($item["price"]*$item["quantity"]);
+				$subTotal = $item["price"] * $item["quantity"];
+				echo $subTotal;
+
+				if(isset($_GET["action"])=="checkout"){
+					$checkoutsql = 'INSERT INTO orders VALUES (NULL, "'.$_SESSION['username'].'",
+					"'.$item['name'].'","'.$item['quantity'].'","'.$subTotal.'")';
+					if(mysqli_query($con, $checkoutsql)){
+						echo "<h3>data stored in database successfully.";
+					}else{
+						echo "ERROR: Checkout $sql. "
+							. mysqli_error($con);
+					}
+				}
 		}
 		?>
 

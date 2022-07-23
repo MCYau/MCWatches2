@@ -6,7 +6,7 @@
    <body>
       <center>
          <h1>Storing Form data in Database</h1>
-         <form action="addProduct.php" method="post">
+         <form action="addProduct.php" method="post" enctype="multipart/form-data"> <!--new-->
              
 <!--<p>
                <label for="id">Product ID:</label>
@@ -27,7 +27,8 @@
              
 <p>
                <label for="image">Image:</label>
-               <input type="text" name="image" id="image">
+               <!--<input type="text" name="image" id="image">-->
+               <input class="form-control" type="file" name="uploadfile" value="" /><!--new-->
             </p>
  
              
@@ -53,9 +54,9 @@
          <form method="post" action="admin.php?action=del">
          <div><img src="<?php echo $item["image"]; ?>" width="100px" class="existing-cart" /><?php echo $item["name"]; ?></td></div>
          <div><?php echo $item["code"]; ?></td></div>
-         <div style="text-align:right;"><?php echo $item["id"]; ?></div>
-         <div style="text-align:right;"><?php echo $item["code"]; ?></div>
-         <div  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></div>
+         <div style="text-align:right;"><?php echo $item["id"];?></div>
+         <div style="text-align:right;"><?php echo $item["code"];?></div>
+         <div  style="text-align:right;"><?php echo "$".$item["price"];?></div>
          <div style="text-align:center;"><a href="admin.php?action=del&id=<?php echo $item["id"]; ?>" class="btnRemoveExisting"><img src="icon-delete.png" alt="Remove Item" /></a></div>
          <?php
          }

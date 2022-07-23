@@ -25,7 +25,10 @@
         //$id =  $_REQUEST['id'];
         $name =  $_REQUEST['name'];
         $code = $_REQUEST['code'];
-        $image =  $_REQUEST['image'];
+        //$image =  $_REQUEST['image'];
+        $filename = $_FILES["uploadfile"]["name"];
+        $tempname = $_FILES["uploadfile"]["tmp_name"];
+        $folder = "./image/" . $filename;
         $price = $_REQUEST['price'];
          
         /*$lastId = "SELECT id FROM tblproduct ORDER BY id DESC LIMIT 1";
@@ -36,7 +39,9 @@
         // Performing insert query execution
         // here our table name is tblproduct
         $sql = "INSERT INTO tblproduct  VALUES (NULL,'$name',
-            '$code','$image','$price')";
+            '$code','image/$filename','$price')";
+
+        move_uploaded_file($tempname, $folder);
          
         if(mysqli_query($conn, $sql)){
             echo "<h3>data stored in a database successfully."
@@ -45,7 +50,7 @@
                 header( "refresh:2; url=admin.php" ); 
  
             echo nl2br("\n$name\n $code\n "
-                . "$image\n $price");
+                . "$filename\n $price");
         } else{
             echo "ERROR: Hush! Sorry $sql. "
                 . mysqli_error($conn);
