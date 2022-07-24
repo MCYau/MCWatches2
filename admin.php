@@ -30,6 +30,42 @@
                <!--<input type="text" name="image" id="image">-->
                <input class="form-control" type="file" name="uploadfile" value="" /><!--new-->
             </p>
+
+            <p>
+               <label for="descp">Product Description:</label>
+               <textarea name="descp" id="descp" cols="30" rows="10" maxlength="500" oninput="countWord()"></textarea>
+               <p> Remaining Characters:
+                  <span id="show">500</span>
+               </p>
+               <script>
+                  function countWord() {
+            
+                        // Get the input text value
+                        var words = document
+                           .getElementById("descp").value;
+            
+                        // Initialize the word counter
+                        var count = 0;
+            
+                        // Split the words on each
+                        // space character
+                        var split = words.split(' ');
+            
+                        // Loop through the words and
+                        // increase the counter when
+                        // each split word is not empty
+                        for (var i = 0; i < words.length; i++) {
+                              count += 1;
+                        }
+
+                        var remainingChar = 500 - count;
+            
+                        // Display it as output
+                        document.getElementById("show")
+                           .innerHTML = remainingChar;
+                  }
+               </script>
+            </p>
  
              
 <p>

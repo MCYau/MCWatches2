@@ -22,6 +22,7 @@ foreach ($trackResult as $trackResult){
     <div class="trackitem-container">
     <div class="trackitem-table">
     <div><img src="<?php echo $trackResult["image"]; ?>" width="100px" class="tracking-cart" /></td></div>
+    <div  style="text-align:right;"><?php echo $trackResult["orderedItem"];?></div>
     <div  style="text-align:right;"><?php echo $trackResult["quantity"];?></div>
     <div  style="text-align:right;"><?php echo "$".$trackResult["totalPrice"];?></div>
     <div  style="text-align:right;"><?php echo $trackResult["orderDate"];?></div>

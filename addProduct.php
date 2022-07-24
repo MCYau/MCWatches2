@@ -30,6 +30,7 @@
         $tempname = $_FILES["uploadfile"]["tmp_name"];
         $folder = "./image/" . $filename;
         $price = $_REQUEST['price'];
+        $descp = $_REQUEST['descp'];
          
         /*$lastId = "SELECT id FROM tblproduct ORDER BY id DESC LIMIT 1";
         //$lastIdData = mysqli_query($conn, $lastId);
@@ -38,7 +39,7 @@
 
         // Performing insert query execution
         // here our table name is tblproduct
-        $sql = "INSERT INTO tblproduct  VALUES (NULL,'$name',
+        $sql = "INSERT INTO tblproduct  VALUES (NULL,'$name', '$descp',
             '$code','image/$filename','$price')";
 
         move_uploaded_file($tempname, $folder);

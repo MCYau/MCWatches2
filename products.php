@@ -53,26 +53,81 @@ switch($_GET["action"]) {
 <p>Hey, <?php echo $_SESSION['username']; ?>!</p>
 <a href="logout.php">Logout</a>
 <a href="trackorder.php">Track Order</a>
-<BODY>
-<div id="shopping-cart">
-<div class="txt-heading">Shopping Cart</div>
+<BODY style="font-family: Arial; color: #211a1a; font-size: 0.9em; background-color: white;">
+<div id="shopping-cart" style="margin: 40px;">
+<div class="txt-heading" style="color: #211a1a; border-bottom: 1px solid #E0E0E0; overflow: auto;">Shopping Cart</div>
 
-<a id="btnEmpty" href="products.php?action=empty">Empty Cart</a>
+<a id="btnEmpty" href="products.php?action=empty" style="background-color: #ffffff;border: #d00000 1px solid; padding: 5px 10px; color: #d00000;
+	float: right;
+	text-decoration: none;
+	border-radius: 3px;
+	margin: 10px 0px;">Empty Cart</a>
 <?php
 if(isset($_SESSION["cart_item"])){
     $total_quantity = 0;
     $total_price = 0;
 ?>	
-<table class="tbl-cart" cellpadding="10" cellspacing="1">
+<table class="tbl-cart" cellpadding="10" cellspacing="1" style="width: 100%; background-color: #F0F0F0; font-size: 0.9em;">
 <tbody>
 <tr>
-<th style="text-align:left;">Name</th>
+<th style="text-align:left;" width="20%">Name</th>
 <th style="text-align:left;">Code</th>
 <th style="text-align:right;" width="5%">Quantity</th>
 <th style="text-align:right;" width="10%">Unit Price</th>
 <th style="text-align:right;" width="10%">Price</th>
 <th style="text-align:center;" width="5%">Remove</th>
-<th style="text-align:center;"><a href="products.php?action=checkout">Check Out</a></th>
+<th style="text-align:center;" rowspan="100">
+
+<div class="wrapper">
+            <div class="container">
+                <form method="post" action="products.php?action=checkout">
+                    <h1>
+                        <i class="fas fa-shipping-fast"></i>
+                        Shipping Details
+                    </h1>
+                    <div class="name">
+                        <div>
+                            <label for="fullname" >Full Name</label>
+                            <input type="text" name="fullname" required>
+                        </div>
+                    </div>
+                    <div class="address-info" style="margin-top:10px;">
+                        <div>
+                            <label for="address">Address</label>
+                            <input type="text" name="address" required>
+                        </div>
+                        <div>
+                            <label for="zip">Zip</label>
+                            <input type="text" name="zip" style="margin-top:10px;" required>
+                        </div>
+                    </div>
+                    <h1>
+                        <i class="far fa-credit-card"></i> Payment Information
+                    </h1>
+                    <div class="cc-num">
+                        <label for="card-num">Credit Card No.</label>
+                        <input type="text" name="card-num" style="margin-top:10px;" required>
+                    </div>
+                    <div class="cc-info">
+                        <div>
+                            <label for="card-num">Exp</label>
+                            <input type="text" name="expire" style="margin-top:10px;" required>
+                        </div>
+                        <div>
+                            <label for="card-num">CCV</label>
+                            <input type="text" name="security" style="margin-top:10px;" required>
+                        </div>
+                    </div>
+                    <div class="btns">
+						<br>
+                        <input type="submit" value="Purchase">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+</th>
+<!--<th style="text-align:center;"><a href="products.php?action=checkout">Check Out</a></th>-->
 </tr>	
 <?php	
 	$username = $_SESSION['username'];
@@ -81,7 +136,13 @@ if(isset($_SESSION["cart_item"])){
         $item_price = $item["quantity"]*$item["price"];
 		?>
 				<tr>
-				<td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" /><?php echo $item["name"]; ?></td>
+				<td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" style="width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				border: #E0E0E0 1px solid;
+				padding: 5px;
+				vertical-align: middle;
+				margin-right: 15px;"/><?php echo $item["name"]; ?></td>
 				<td><?php echo $item["code"]; ?></td>
 				<td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
 				<td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
@@ -120,33 +181,44 @@ if(isset($_SESSION["cart_item"])){
   <?php
 } else {
 ?>
-<div class="no-records">Your Cart is Empty</div>
+<div class="no-records" style="text-align: center; clear: both; margin: 38px 0px;">Your Cart is Empty</div>
 <?php 
 }
 ?>
 </div>
 
-<div id="product-grid">
-	<div class="txt-heading">Products</div>
+<div id="product-grid" style="margin: 40px;">
+	<div class="txt-heading" style="margin-bottom: 18px;">Products</div>
 	<?php
 	$product_array = $db_handle->runQuery("SELECT * FROM tblproduct ORDER BY id ASC");
 	if (!empty($product_array)) { 
 		foreach($product_array as $key=>$value){
 	?>
-		<div class="product-item">
+		<div class="product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid;">
 			<form method="post" action="products.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
-			<div class="product-image"><img src="<?php echo $product_array[$key]["image"]; ?>" width="150"></div>
+			<div class="product-image" style="height: 155px; width: 250px; background-color: #FFF;"><img src="<?php echo $product_array[$key]["image"]; ?>" width="150"></div>
 			<div class="product-tile-footer">
-			<div class="product-title"><?php echo $product_array[$key]["name"]; ?></div>
-			<div class="product-price"><?php echo "$".$product_array[$key]["price"]; ?></div>
-			<div class="cart-action"><input type="text" class="product-quantity" name="quantity" value="1" size="2" /><input type="submit" value="Add to Cart" class="btnAddAction" /></div>
+			<div class="product-title" style="margin-bottom: 20px;"><?php echo $product_array[$key]["name"]; ?></div>
+			<div class="product-descp"><?php echo $product_array[$key]["descp"]; ?></div>
+			<div class="product-price" style="float:left;"><?php echo "$".$product_array[$key]["price"]; ?></div>
+			<div class="cart-action" style="float: right;"><input type="text" class="product-quantity" name="quantity" value="1" size="2" style="padding: 5px 10px;
+    		border-radius: 3px;
+    		border: #E0E0E0 1px solid;"/><input type="submit" value="Add to Cart" class="btnAddAction" style="padding: 5px 10px;
+			margin-left: 5px;
+			background-color: #efefef;
+			border: #E0E0E0 1px solid;
+			color: #211a1a;
+			float: right;
+			text-decoration: none;
+			border-radius: 3px;
+			cursor: pointer;"/></div>
 			</div>
 			</form>
 		</div>
+
 	<?php
 		}
 	}
-	?>
-</div>
+	?>	
 </BODY>
 </HTML>
