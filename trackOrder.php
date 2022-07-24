@@ -25,6 +25,8 @@ foreach ($trackResult as $trackResult){
     <div  style="text-align:right;"><?php echo $trackResult["orderedItem"];?></div>
     <div  style="text-align:right;"><?php echo $trackResult["quantity"];?></div>
     <div  style="text-align:right;"><?php echo "$".$trackResult["totalPrice"];?></div>
+    <div  style="text-align:right;"><?php echo $trackResult["address"];?></div>
+    <div  style="text-align:right;"><?php echo $trackResult["zip"];?></div>
     <div  style="text-align:right;"><?php echo $trackResult["orderDate"];?></div>
        
        <?php

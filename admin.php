@@ -2,39 +2,41 @@
 <html lang="en">
    <head>
       <title>Admin Page</title>
+      <style>
+         label{
+            margin-left: 130px;
+         }
+      </style>
    </head>
    <body>
-      <center>
-         <h1>Storing Form data in Database</h1>
+   <div style="display: flex; justify-content: center;">
+      <div style="border: 1px solid black; width: 40%; background-color: #F5EBFF;">
+         <h1 style="margin-left: 180px;">Add a product into Database</h1>
          <form action="addProduct.php" method="post" enctype="multipart/form-data"> <!--new-->
-             
-<!--<p>
-               <label for="id">Product ID:</label>
-               <input type="number" name="id" id="id">
-            </p>-->
+
 
 <p>
                <label for="name">Product Name:</label>
-               <input type="text" name="name" id="name">
+               <input type="text" name="name" id="name" style="margin-left: 30px;">
             </p>
  
              
 <p>
                <label for="code">Product Code:</label>
-               <input type="text" name="code" id="code">
+               <input type="text" name="code" id="code" style="margin-left: 35px;">
             </p>
  
              
 <p>
                <label for="image">Image:</label>
                <!--<input type="text" name="image" id="image">-->
-               <input class="form-control" type="file" name="uploadfile" value="" /><!--new-->
+               <input class="form-control" type="file" name="uploadfile" value="" style="margin-left: 80px;"/><!--new-->
             </p>
 
             <p>
                <label for="descp">Product Description:</label>
                <textarea name="descp" id="descp" cols="30" rows="10" maxlength="500" oninput="countWord()"></textarea>
-               <p> Remaining Characters:
+               <p style="margin-left: 280px;"> Remaining Characters:
                   <span id="show">500</span>
                </p>
                <script>
@@ -70,12 +72,13 @@
              
 <p>
                <label for="price">Price:</label>
-               <input type="text" name="price" id="price">
+               <input type="text" name="price" id="price" style="margin-left: 100px;">
             </p>
  
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" style="margin-left: 300px; margin-bottom: 20px;">
          </form>
-      </center>
+      </div>
+   </div>
    </body>
    <div id="existing-products">
       <?php
@@ -88,12 +91,12 @@
       <div class="table-container">
       <div class="product-table">
          <form method="post" action="admin.php?action=del">
-         <div><img src="<?php echo $item["image"]; ?>" width="100px" class="existing-cart" /><?php echo $item["name"]; ?></td></div>
-         <div><?php echo $item["code"]; ?></td></div>
-         <div style="text-align:right;"><?php echo $item["id"];?></div>
-         <div style="text-align:right;"><?php echo $item["code"];?></div>
-         <div  style="text-align:right;"><?php echo "$".$item["price"];?></div>
-         <div style="text-align:center;"><a href="admin.php?action=del&id=<?php echo $item["id"]; ?>" class="btnRemoveExisting"><img src="icon-delete.png" alt="Remove Item" /></a></div>
+         <div><img src="<?php echo $item["image"]; ?>" width="100px" height="100px" class="existing-cart" /></div>
+         <div><?php echo $item["name"]; ?></div>
+         <div><?php echo $item["code"]; ?></div>
+         <div><?php echo $item["id"];?></div>
+         <div><?php echo "$".$item["price"];?></div>
+         <div><a href="admin.php?action=del&id=<?php echo $item["id"]; ?>" class="btnRemoveExisting"><img src="icon-delete.png" alt="Remove Item" /></a></div>
          <?php
          }
          if((isset($_GET["action"])=="del")) {

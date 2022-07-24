@@ -88,17 +88,17 @@ if(isset($_SESSION["cart_item"])){
                     <div class="name">
                         <div>
                             <label for="fullname" >Full Name</label>
-                            <input type="text" name="fullname" required>
+                            <input type="text" name="fullname" required placeholder="Your Name">
                         </div>
                     </div>
                     <div class="address-info" style="margin-top:10px;">
                         <div>
                             <label for="address">Address</label>
-                            <input type="text" name="address" required>
+                            <input type="text" name="address" required placeholder="Your Address">
                         </div>
                         <div>
                             <label for="zip">Zip</label>
-                            <input type="text" name="zip" style="margin-top:10px;" required>
+                            <input type="number" name="zip" style="margin-top:10px;" required placeholder="6 digits Zip code">
                         </div>
                     </div>
                     <h1>
@@ -106,16 +106,16 @@ if(isset($_SESSION["cart_item"])){
                     </h1>
                     <div class="cc-num">
                         <label for="card-num">Credit Card No.</label>
-                        <input type="text" name="card-num" style="margin-top:10px;" required>
+                        <input type="number" name="card-num" style="margin-top:10px;" required placeholder="xxxx xxxx xxxx xxxx">
                     </div>
                     <div class="cc-info">
                         <div>
                             <label for="card-num">Exp</label>
-                            <input type="text" name="expire" style="margin-top:10px;" required>
+                            <input type="text" name="expire" style="margin-top:10px;" required placeholder="mm/yy">
                         </div>
                         <div>
                             <label for="card-num">CCV</label>
-                            <input type="text" name="security" style="margin-top:10px;" required>
+                            <input type="number" name="security" style="margin-top:10px;" required placeholder="xxx">
                         </div>
                     </div>
                     <div class="btns">
@@ -155,8 +155,10 @@ if(isset($_SESSION["cart_item"])){
 				$subTotal = $item["price"] * $item["quantity"];
 				//echo "<div>.$_GET['action'].</div>";
 				if(isset($_GET["action"]) && $_GET["action"]=="checkout"){
+					$address = $_POST['address'];
+					$zip = $_POST['zip'];
 					$checkoutsql = 'INSERT INTO orders VALUES (NULL, "'.$_SESSION['username'].'",
-					"'.$item['name'].'","'.$item['quantity'].'","'.$subTotal.'","'.$item['image'].'","'.$orderDateTime.'")';
+					"'.$item['name'].'","'.$item['quantity'].'","'.$subTotal.'","'.$item['image'].'","'.$orderDateTime.'", "'.$address.'", "'.$zip.'")';
 					if(mysqli_query($con, $checkoutsql)){
 						//echo '<script>alert("Order has been confirmed")</script>';
 						//header("Location: products.php?action=empty", TRUE, 301);	
