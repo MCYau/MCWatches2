@@ -104,7 +104,7 @@ footer h2{
 </style>
 </head>
 <header>
-        <img class="logo" src="image/MCWatchLogo.jpg" height="150" alt="logo">
+        <a href="index.php"><img class="logo" src="image/MCWatchLogo.jpg" height="150" alt="logo"><a>
         
         <nav>
             <ul class="nav__links">
@@ -117,7 +117,11 @@ footer h2{
         <a id="logout" href="logout.php"><button>Logout</button></a>
         <?php
         if($_SESSION){
-        ?> <p>Hey, <?php echo $_SESSION['username']; ?>!</p>
+        ?> <p style="font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: black;
+        text-decoration: none;">Welcome, <?php echo $_SESSION['username']; ?>!</p>
         <?php
         }
         ?>

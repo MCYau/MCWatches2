@@ -10,33 +10,33 @@
    </head>
    <body>
    <div style="display: flex; justify-content: center;">
-      <div style="border: 1px solid black; width: 40%; background-color: #F5EBFF;">
+      <div style="border: 1px solid rgba(0, 136, 169, 1); width: 40%; color: rgba(0, 136, 169, 1);">
          <h1 style="margin-left: 180px;">Add a product into Database</h1>
          <form action="addProduct.php" method="post" enctype="multipart/form-data"> <!--new-->
 
 
 <p>
                <label for="name">Product Name:</label>
-               <input type="text" name="name" id="name" style="margin-left: 30px;">
+               <input type="text" name="name" id="name" style="margin-left: 60px;">
             </p>
  
              
 <p>
                <label for="code">Product Code:</label>
-               <input type="text" name="code" id="code" style="margin-left: 35px;">
+               <input type="text" name="code" id="code" style="margin-left: 65px;">
             </p>
  
              
 <p>
                <label for="image">Image:</label>
                <!--<input type="text" name="image" id="image">-->
-               <input class="form-control" type="file" name="uploadfile" value="" style="margin-left: 80px;"/><!--new-->
+               <input class="form-control" type="file" name="uploadfile" value="" style="margin-left: 115px;"/><!--new-->
             </p>
 
             <p>
                <label for="descp">Product Description:</label>
-               <textarea name="descp" id="descp" cols="30" rows="10" maxlength="500" oninput="countWord()"></textarea>
-               <p style="margin-left: 280px;"> Remaining Characters:
+               <textarea name="descp" id="descp" cols="30" rows="10" maxlength="500" oninput="countWord()" style="margin-left: 25px;"></textarea>
+               <p style="margin-left: 310px; margin-top: -15px;"> Remaining Characters:
                   <span id="show">500</span>
                </p>
                <script>
@@ -72,7 +72,7 @@
              
 <p>
                <label for="price">Price:</label>
-               <input type="text" name="price" id="price" style="margin-left: 100px;">
+               <input type="text" name="price" id="price" style="margin-left: 125px;">
             </p>
  
             <input type="submit" value="Submit" style="margin-left: 300px; margin-bottom: 20px;">
