@@ -1,5 +1,6 @@
 <?php
 //session_start();
+include("header.php");
 include("auth_session.php"); // new
 require_once("db.php");
 date_default_timezone_set('Asia/Singapore');
@@ -50,8 +51,6 @@ switch($_GET["action"]) {
 <TITLE>Simple PHP Shopping Cart</TITLE>
 <link href="productsStyle.css" type="text/css" rel="stylesheet" />
 </HEAD>
-<p>Hey, <?php echo $_SESSION['username']; ?>!</p>
-<a href="logout.php">Logout</a>
 <a href="trackorder.php">Track Order</a>
 <BODY style="font-family: Arial; color: #211a1a; font-size: 0.9em; background-color: white;">
 <div id="shopping-cart" style="margin: 40px;">
@@ -110,7 +109,7 @@ if(isset($_SESSION["cart_item"])){
                     </div>
                     <div class="cc-info">
                         <div>
-                            <label for="card-num">Exp</label>
+                            <label for="card-num">Expiry Date</label>
                             <input type="text" name="expire" style="margin-top:10px;" required placeholder="mm/yy">
                         </div>
                         <div>
@@ -136,8 +135,8 @@ if(isset($_SESSION["cart_item"])){
         $item_price = $item["quantity"]*$item["price"];
 		?>
 				<tr>
-				<td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" style="width: 30px;
-				height: 30px;
+				<td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" style="height: 150px;
+				width: 150px;
 				border-radius: 50%;
 				border: #E0E0E0 1px solid;
 				padding: 5px;
@@ -198,11 +197,11 @@ if(isset($_SESSION["cart_item"])){
 	?>
 		<div class="product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid;">
 			<form method="post" action="products.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
-			<div class="product-image" style="height: 155px; width: 250px; background-color: #FFF;"><img src="<?php echo $product_array[$key]["image"]; ?>" width="150"></div>
+			<div class="product-image" style="height: 300px; width: 500px; background-color: #FFF; display:flex; justify-content:center" ><img src="<?php echo $product_array[$key]["image"]; ?>" height="300"></div>
 			<div class="product-tile-footer">
-			<div class="product-title" style="margin-bottom: 20px;"><?php echo $product_array[$key]["name"]; ?></div>
-			<div class="product-descp"><?php echo $product_array[$key]["descp"]; ?></div>
-			<div class="product-price" style="float:left;"><?php echo "$".$product_array[$key]["price"]; ?></div>
+			<div class="product-title" style="margin-bottom: 20px; margin-top:10px; margin-left:20px; font-weight:bold; font-size: 1.5em;"><?php echo $product_array[$key]["name"]; ?></div>
+			<div class="product-descp" style="margin-bottom: 20px; margin-left:20px; max-width:400px;"><?php echo $product_array[$key]["descp"]; ?></div>
+			<div class="product-price" style="float:left; margin-left:20px;"><?php echo "$".$product_array[$key]["price"]; ?></div>
 			<div class="cart-action" style="float: right;"><input type="text" class="product-quantity" name="quantity" value="1" size="2" style="padding: 5px 10px;
     		border-radius: 3px;
     		border: #E0E0E0 1px solid;"/><input type="submit" value="Add to Cart" class="btnAddAction" style="padding: 5px 10px;

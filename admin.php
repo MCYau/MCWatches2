@@ -81,37 +81,31 @@
    </div>
    </body>
    <div id="existing-products">
+      <center>
+      <h1>List of existing products</h1>
+      </center>
       <?php
          include 'db.php';
          $sql = 'SELECT * FROM tblproduct';
          $result = mysqli_query($con,$sql);
          $item = mysqli_fetch_all($result, MYSQLI_ASSOC);
          foreach ($item as $item){
-      ?>
-      <div class="table-container">
-      <div class="product-table">
-         <form method="post" action="admin.php?action=del">
-         <div><img src="<?php echo $item["image"]; ?>" width="100px" height="100px" class="existing-cart" /></div>
-         <div><?php echo $item["name"]; ?></div>
-         <div><?php echo $item["code"]; ?></div>
-         <div><?php echo $item["id"];?></div>
-         <div><?php echo "$".$item["price"];?></div>
-         <div><a href="admin.php?action=del&id=<?php echo $item["id"]; ?>" class="btnRemoveExisting"><img src="icon-delete.png" alt="Remove Item" /></a></div>
-         <?php
-         }
-         if((isset($_GET["action"])=="del")) {
-            $sql = 'DELETE FROM tblproduct WHERE id ='.$_GET["id"].'';
-            $resultDel = mysqli_query($con,$sql);
-            if(! $resultDel){
-               die('Could not delete data:'.mysql_error());
-            }else{
-               echo "Deleted data successfully\n";
-               echo "Page will now refresh";
-               header( "refresh:3; url=admin.php" ); 
-            }
-         }
-         ?>
-      </div>
+            ?>
+                <div class="existing-product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid;">
+                    <form method="post" action="admin.php?action=del">
+                    <div class="existingproduct-image" style="height: 200px; width: 500px; background-color: #FFF; display:flex; justify-content:center" ><img src="<?php echo $item["image"]; ?>" height="200"></div>
+                    <div class="existingproduct-title-footer">
+                    <div class="existingroduct-title" style="margin-bottom: 20px; margin-top:10px; margin-left:20px; font-weight:bold; font-size: 1.5em;"><?php echo $item["name"]; ?></div>
+                    <div class="existingroduct-code" style="margin-bottom: 20px; margin-top:10px; margin-left:20px;"><?php echo $item["code"]; ?></div>
+                    <div class="existingroduct-descp" style="margin-bottom: 20px; margin-left:20px; max-width:400px;"><?php echo $item["descp"]; ?></div>
+                    <div class="existingproduct-price" style="float:left; margin-left:20px;"><?php echo "$".$item["price"]; ?></div>
+                    <div><a href="admin.php?action=del&id=<?php echo $item["id"]; ?>" class="btnRemoveExisting"><img src="icon-delete.png" height="40" style="float: right;" alt="Remove Item" /></a></div>
+                    </div>
+                    </form>
+                </div>
+            <?php
+                }
+            ?>
       </form>
       </div>
   </div>
