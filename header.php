@@ -1,11 +1,16 @@
 <?php
 include("auth_session.php");
+$con = mysqli_connect("localhost","root","","MCWatches");
+    // Check connection
+    if (mysqli_connect_errno()){
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
 ?>
 <head>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 
-/* Header */
+/* header */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -64,43 +69,6 @@ button:hover{
     background-color: rgba(0, 136, 169, 1);
 }
 
-/* Footer */
-
-
-
-footer{
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 10%;
-}
-
-.social_links {
-    list-style: none;
-}
-.social_links li {
-    display:inline-block;
-    padding: 10px 80px;
-}
-
-/* footer{
-    position: absolute;
-    width: 100%;
-}
-
-footer{
-    height: 15vh;
-    bottom: 0;
-} */
-footer h2{
-    height:15vh;
-    bottom:0;
-    margin:auto;
-    width:50%;
-    text-align: center;
-}
-
 </style>
 </head>
 <header>
@@ -117,7 +85,14 @@ footer h2{
         <a id="logout" href="logout.php"><button>Logout</button></a>
         <?php
         if($_SESSION){
-        ?> <p style="font-family: Montserrat, sans-serif;
+        ?> 
+        <div id="admin-button"><a href="admin.php" style="padding: 9px 25px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;">Admin page</a></li></div>
+        <p style="font-family: Montserrat, sans-serif;
         font-weight: 500;
         font-size: 16px;
         color: black;
@@ -141,5 +116,22 @@ footer h2{
     document.getElementById("logout").style.display = "block";
     </script>
     <?php
-    }
+    $username = $_SESSION['username'];
+    $adminQuery    = "SELECT * FROM `users` WHERE username='$username' AND isAdmin = 1";
+    $adminResult = mysqli_query($con, $adminQuery);
+    $adminRows = mysqli_num_rows($adminResult);
+        
+            if ($adminRows == 1){ ?>
+            <script>
+            document.getElementById("admin-button").style.display= "block";
+            </script>
+            <?php
+            } else {
+            ?>
+            <script>
+            document.getElementById("admin-button").style.display= "none";
+            </script>
+            <?php
+            }}
     ?>
+    

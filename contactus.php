@@ -1,37 +1,37 @@
-
+<?php
+include("header.php");
+?>
 <!DOCTYPE html>
 <html>
- 
-<head>
-    <?php
-    include("header.php");
-    ?>
-    <title>Insert Page page</title>
-</head>
- 
 <body>
-<center>
+
+<div style="display: flex;" >
+<div style="border: 1px solid black; width: 40%;; height: 570px; padding: 20px 50px; margin-left: 50px; font-size: 1.5em; color: rgba(0, 136, 169, 1);">
          <h1>Contact us</h1>
          <form action="contactus.php?action=submit" method="post">
              
-<p>
+<p style="margin-top: 20px;">
                <label for="name">Name:</label>
-               <input type="text" name="name" id="name" required>
+               <input type="text" name="name" id="name" required style="font-size: 1.1em; padding: 5px 10px; margin-left: 50px; ">
 </p>
- 
-             
-<p>
+              
+<p style="margin-top: 20px;">
                <label for="email">Email:</label>
-               <input type="text" name="email" id="email" required>
-            </p>
-<p>
+               <input type="text" name="email" id="email" required style="font-size: 1.1em; padding: 5px 10px; margin-left: 50px;">
+</p>
+
+<p style="margin-top: 20px;">
                <label for="msg">Message:</label>
-               <textarea type="text" name="msg" id="msg" required></textarea>
+               <textarea type="text" name="msg" id="msg" required rows="8" cols="40" style="font-size: 1.3em; padding: 10px;"></textarea>
             </p>
- 
-            <input type="submit" value="Submit">
+
+            <input type="submit" value="Submit" style="border: 4px solid rgba(0, 136, 169, 1); border-radius: 5px; padding: 10px; color: rgba(0, 136, 169, 1); cursor: pointer; margin-top:8px;">
          </form>
-      </center>
+</div>
+<br>
+<img src="image/forcontactus.png" height="570px;" style="margin-left: 50px;">
+</div>
+
     <center>
         <?php
  
@@ -65,17 +65,12 @@
                 . mysqli_error($conn);
         }
     }
-         
-        // Close connection
-        //mysqli_close($conn);
-        ?>
+?>
     </center>
-    <footer>
-    <?php
-    include("footer.php");
-    ?>
-    </footer>
 </body>
 
  
 </html>
+    <?php
+    include("footer.php");
+    ?>

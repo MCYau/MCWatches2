@@ -5,6 +5,7 @@ include("auth_session.php"); // new
 require_once("db.php");
 date_default_timezone_set('Asia/Singapore');
 $db_handle = new DBController();
+//Switch case to find out user action
 if(!empty($_GET["action"])) {
 switch($_GET["action"]) {
 	case "add":
@@ -48,8 +49,7 @@ switch($_GET["action"]) {
 ?>
 <HTML>
 <HEAD>
-<TITLE>Simple PHP Shopping Cart</TITLE>
-<link href="productsStyle.css" type="text/css" rel="stylesheet" />
+<TITLE>Products</TITLE>
 </HEAD>
 <a href="trackorder.php" style="border: 4px solid rgba(0, 136, 169, 1); border-radius: 5px; margin-left: 40px; padding: 10px; color: rgba(0, 136, 169, 1)">Track Your Order</a>
 <BODY style="font-family: Arial; color: #211a1a; font-size: 0.9em; background-color: white;">
@@ -62,6 +62,7 @@ switch($_GET["action"]) {
 	border-radius: 3px;
 	margin: 10px 0px;">Empty Cart</a>
 <?php
+//header for cart
 if(isset($_SESSION["cart_item"])){
     $total_quantity = 0;
     $total_price = 0;
@@ -76,7 +77,7 @@ if(isset($_SESSION["cart_item"])){
 <th style="text-align:center;" width="10%">Price</th>
 <th style="text-align:center;" width="5%">Remove</th>
 <th style="text-align:center;" rowspan="100">
-
+<!-- Shipping Details -->
 <div class="wrapper" style="text-align:left; padding: 10px 50px;">
             <div class="container">
                 <form method="post" action="products.php?action=checkout">
@@ -126,8 +127,8 @@ if(isset($_SESSION["cart_item"])){
         </div>
 
 </th>
-<!--<th style="text-align:center;"><a href="products.php?action=checkout">Check Out</a></th>-->
 </tr>	
+<!-- Table for cart -->
 <?php	
 	$username = $_SESSION['username'];
 	$orderDateTime = date("Y-m-d H:i:s");
@@ -152,15 +153,13 @@ if(isset($_SESSION["cart_item"])){
 				$total_quantity += $item["quantity"];
 				$total_price += ($item["price"]*$item["quantity"]);
 				$subTotal = $item["price"] * $item["quantity"];
-				//echo "<div>.$_GET['action'].</div>";
+				//Query for checkout
 				if(isset($_GET["action"]) && $_GET["action"]=="checkout"){
 					$address = $_POST['address'];
 					$zip = $_POST['zip'];
 					$checkoutsql = 'INSERT INTO orders VALUES (NULL, "'.$_SESSION['username'].'",
 					"'.$item['name'].'","'.$item['quantity'].'","'.$subTotal.'","'.$item['image'].'","'.$orderDateTime.'", "'.$address.'", "'.$zip.'")';
 					if(mysqli_query($con, $checkoutsql)){
-						//echo '<script>alert("Order has been confirmed")</script>';
-						//header("Location: products.php?action=empty", TRUE, 301);	
 						echo "<script>alert('Order has been confirmed.') ; window.location.href = 'products.php?action=empty'</script>";
 					}else{
 						echo "ERROR: Checkout $sql. "
@@ -187,7 +186,7 @@ if(isset($_SESSION["cart_item"])){
 }
 ?>
 </div>
-
+<!-- Table for all available products -->
 <div id="product-grid" style="margin: 40px;">
 	<div class="txt-heading" style="margin-bottom: 18px;">Products</div>
 	<?php
@@ -195,13 +194,13 @@ if(isset($_SESSION["cart_item"])){
 	if (!empty($product_array)) { 
 		foreach($product_array as $key=>$value){
 	?>
-		<div class="product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid;">
+		<div class="product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; min-height: 500px; max-height: 500px;">
 			<form method="post" action="products.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
 			<div class="product-image" style="height: 300px; width: 500px; background-color: #FFF; display:flex; justify-content:center" ><img src="<?php echo $product_array[$key]["image"]; ?>" height="300"></div>
 			<div class="product-tile-footer">
 			<div class="product-title" style="margin-bottom: 20px; margin-top:10px; margin-left:20px; font-weight:bold; font-size: 1.5em;"><?php echo $product_array[$key]["name"]; ?></div>
-			<div class="product-descp" style="margin-bottom: 20px; margin-left:20px; max-width:400px; font-size: 1.2em;"><?php echo $product_array[$key]["descp"]; ?></div>
-			<div class="product-price" style="float:left; margin-left:20px; font-size: 1.2em; font-weight:bold;"><?php echo "$".$product_array[$key]["price"]; ?></div>
+			<div class="product-descp" style="margin-bottom: 20px; margin-left:20px; max-width:400px; font-size: 1.2em; overflow: auto;"><?php echo $product_array[$key]["descp"]; ?></div>
+			<div class="product-price" style="float:left;  margin-left:20px; font-size: 1.2em; font-weight:bold;"><?php echo "$".$product_array[$key]["price"]; ?></div>
 			<div class="cart-action" style="float: right;"><input type="text" class="product-quantity" name="quantity" value="1" size="2" style="padding: 5px 10px; font-size: 1.2em;
     		border-radius: 3px;
     		border: #E0E0E0 1px solid;"/><input type="submit" value="Add to Cart" class="btnAddAction" style="padding: 5px 10px;
@@ -222,5 +221,9 @@ if(isset($_SESSION["cart_item"])){
 		}
 	}
 	?>	
+
 </BODY>
 </HTML>
+	<?php
+	include("footer.php");
+	?>

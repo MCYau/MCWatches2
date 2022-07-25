@@ -3,6 +3,21 @@
 include("auth_session.php");
 ?>
 <!DOCTYPE html>
+<style>
+    .form {
+    margin: 50px auto;
+    width: 300px;
+    padding: 30px 25px;
+    background: white;
+}
+body {
+    background: #3e4144;
+}
+body{
+    display: flex;
+    justify-content: center;
+}
+</style>
 <html>
 <head>
     <meta charset="utf-8">

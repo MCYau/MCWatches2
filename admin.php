@@ -1,3 +1,6 @@
+<?php
+include("header.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -9,10 +12,11 @@
       </style>
    </head>
    <body>
-   <div style="display: flex; justify-content: center;">
-      <div style="border: 1px solid rgba(0, 136, 169, 1); width: 40%; color: rgba(0, 136, 169, 1);">
-         <h1 style="margin-left: 180px;">Add a product into Database</h1>
-         <form action="addProduct.php" method="post" enctype="multipart/form-data"> <!--new-->
+   <div style="display: flex; justify-content: center;" >
+   
+      <div style="border: 1px solid rgba(0, 136, 169, 1); width: 40%; color: rgba(0, 136, 169, 1); height:500px;">
+         <h1 style="margin-left: 180px; margin-bottom: 30px; margin-top: 10px;">Add a product into Database</h1>
+         <form action="addProduct.php" method="post" enctype="multipart/form-data">
 
 
 <p>
@@ -22,20 +26,24 @@
  
              
 <p>
+   <br>
                <label for="code">Product Code:</label>
                <input type="text" name="code" id="code" style="margin-left: 65px;">
             </p>
  
              
 <p>
+   <br>
                <label for="image">Image:</label>
-               <!--<input type="text" name="image" id="image">-->
-               <input class="form-control" type="file" name="uploadfile" value="" style="margin-left: 115px;"/><!--new-->
+               <input class="form-control" type="file" name="uploadfile" value="" style="margin-left: 115px;"/>
             </p>
 
             <p>
+               <br>
                <label for="descp">Product Description:</label>
-               <textarea name="descp" id="descp" cols="30" rows="10" maxlength="500" oninput="countWord()" style="margin-left: 25px;"></textarea>
+               <br>
+               <textarea name="descp" id="descp" cols="30" rows="10" maxlength="500" oninput="countWord()" style="margin-left: 290px; margin-top:-20px;"></textarea>
+               <br><br>
                <p style="margin-left: 310px; margin-top: -15px;"> Remaining Characters:
                   <span id="show">500</span>
                </p>
@@ -71,15 +79,20 @@
  
              
 <p>
+   <br>
                <label for="price">Price:</label>
                <input type="text" name="price" id="price" style="margin-left: 125px;">
             </p>
- 
-            <input type="submit" value="Submit" style="margin-left: 300px; margin-bottom: 20px;">
+ <br>
+            <input type="submit" value="Submit" style="margin-left: 300px; margin-bottom: 20px; padding: 7px;">
          </form>
+         
       </div>
+      
    </div>
+  
    </body>
+   <br>
    <div id="existing-products">
       <center>
       <h1>List of existing products</h1>
@@ -91,7 +104,7 @@
          $item = mysqli_fetch_all($result, MYSQLI_ASSOC);
          foreach ($item as $item){
             ?>
-                <div class="existing-product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid;">
+                <div class="existing-product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; max-height: 450px; min-height: 450px;">
                     <form method="post" action="admin.php?action=del">
                     <div class="existingproduct-image" style="height: 200px; width: 500px; background-color: #FFF; display:flex; justify-content:center" ><img src="<?php echo $item["image"]; ?>" height="200"></div>
                     <div class="existingproduct-title-footer">
@@ -114,4 +127,3 @@
 
    
 </html>
-<!--         <td style="text-align:center;"><a href="products.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction"><img src="icon-delete.png" alt="Remove Item" /></a></td>

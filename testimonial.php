@@ -1,14 +1,18 @@
+<?php
+  include("header.php");
+?>
 <html lang="en" dir="ltr">
   <head>
-    <?php
-    include("header.php");
-    ?>
+    
     <meta charset="utf-8">
-    <title></title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Testimonial</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    
+</head>
+   
   <body>
+    
  
     <div class="testimonials">
       <div class="inner">
@@ -72,9 +76,15 @@
         </div>
       </div>
     </div>
+    <div class="filler-bg" style="height:120px;">
+  </div>
  
   </body>
+
 </html>
+	<?php
+	include("footer.php");
+	?>
 
 <style>
 {
@@ -84,7 +94,7 @@
  
 }
 body{
-  background:  rgba(0, 136, 169, 1);
+  background:  white;;
 }
 .testimonials{
   margin-top: 100px;
