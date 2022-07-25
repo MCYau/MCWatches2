@@ -1,10 +1,13 @@
 <?php
 include("header.php");
+include("db.php");
 ?>
 <!DOCTYPE html>
 <html>
 <body>
-
+<a href="trackcontactus.php" style="margin-left:50px; border: 1px solid black; padding: 5px; border-radius: 5px; background-color: rgba(0, 136, 169, 1);" id="feedback">See Feedback</a> 
+<br>
+<div style="height: 50px;"></div>
 <div style="display: flex;" >
 <div style="border: 1px solid black; width: 40%;; height: 570px; padding: 20px 50px; margin-left: 50px; font-size: 1.5em; color: rgba(0, 136, 169, 1);">
          <h1>Contact us</h1>
@@ -73,4 +76,21 @@ include("header.php");
 </html>
     <?php
     include("footer.php");
+    $username = $_SESSION['username'];
+$adminQuery    = "SELECT * FROM `users` WHERE username='$username' AND isAdmin = 1";
+$adminResult = mysqli_query($con, $adminQuery);
+$adminRows = mysqli_num_rows($adminResult);
+if ($adminRows == 1){
+    ?>
+    <script>
+    document.getElementById("feedback").style.display = "auto";
+    </script>
+    <?php
+    } else {
+    ?>
+    <script>
+    document.getElementById("feedback").style.display = "none";
+    </script>
+    <?php 
+    }
     ?>

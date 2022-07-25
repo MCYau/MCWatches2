@@ -1,5 +1,14 @@
 <?php
 include("header.php");
+include("db.php");
+$username = $_SESSION['username'];
+$adminQuery    = "SELECT * FROM `users` WHERE username='$username' AND isAdmin = 1";
+$adminResult = mysqli_query($con, $adminQuery);
+$adminRows = mysqli_num_rows($adminResult);
+        if ($adminRows == 1){
+        } else {
+            echo "<script>alert('Access Denied : You are not an admin !') ; window.location.href = 'index.php'</script>";
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +107,6 @@ include("header.php");
       <h1>List of existing products</h1>
       </center>
       <?php
-         include 'db.php';
          $sql = 'SELECT * FROM tblproduct';
          $result = mysqli_query($con,$sql);
          $item = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -108,9 +116,9 @@ include("header.php");
                     <form method="post" action="admin.php?action=del">
                     <div class="existingproduct-image" style="height: 200px; width: 500px; background-color: #FFF; display:flex; justify-content:center" ><img src="<?php echo $item["image"]; ?>" height="200"></div>
                     <div class="existingproduct-title-footer">
-                    <div class="existingroduct-title" style="margin-bottom: 20px; margin-top:10px; margin-left:20px; font-weight:bold; font-size: 1.5em;"><?php echo $item["name"]; ?></div>
-                    <div class="existingroduct-code" style="margin-bottom: 20px; margin-top:10px; margin-left:20px;"><?php echo $item["code"]; ?></div>
-                    <div class="existingroduct-descp" style="margin-bottom: 20px; margin-left:20px; max-width:400px;"><?php echo $item["descp"]; ?></div>
+                    <div class="existingproduct-title" style="margin-bottom: 20px; margin-top:10px; margin-left:20px; font-weight:bold; font-size: 1.5em;"><?php echo $item["name"]; ?></div>
+                    <div class="existingproduct-code" style="margin-bottom: 20px; margin-top:10px; margin-left:20px;"><?php echo $item["code"]; ?></div>
+                    <div class="existingproduct-descp" style="margin-bottom: 20px; margin-left:20px; max-width:400px;"><?php echo $item["descp"]; ?></div>
                     <div class="existingproduct-price" style="float:left; margin-left:20px;"><?php echo "$".$item["price"]; ?></div>
                     <div><a href="admin.php?action=del&id=<?php echo $item["id"]; ?>" class="btnRemoveExisting"><img src="icon-delete.png" height="40" style="float: right;" alt="Remove Item" /></a></div>
                     </div>
@@ -118,6 +126,15 @@ include("header.php");
                 </div>
             <?php
                 }
+                if((isset($_GET["action"])=="del")) {
+                  $sql = 'DELETE FROM tblproduct WHERE id ='.$_GET["id"].'';
+                  $resultDel = mysqli_query($con,$sql);
+                  if(! $resultDel){
+                     die('Could not delete data:'.mysql_error());
+                  }else{
+                     echo "<script>alert('Product has been deleted from the database.') ; window.location.href = 'admin.php'</script>";
+                  }
+               }
             ?>
       </form>
       </div>
