@@ -3,6 +3,9 @@ include("header.php");
 include("db.php");
 ?>
 <!DOCTYPE html>
+<head>
+    <title>Contact Us</title>
+</head>
 <html>
 <body>
 <a href="trackcontactus.php" style="margin-left:50px; border: 1px solid black; padding: 5px; border-radius: 5px; background-color: rgba(0, 136, 169, 1);" id="feedback">See Feedback</a> 

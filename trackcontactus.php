@@ -15,22 +15,29 @@ $result = mysqli_query($con, $contactusquery);
 $trackResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <html>
-<table border ="1" cellspacing="0" cellpadding="10">
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Message</th>
-    <th>Delete Message</th>
-  </tr>
+<head>
+  <title>Show Feedback</title>
+</head>
+<h1 style="text-align: center; font-size: 4em;">All Feedback</h1><br><br>
   <?php
   foreach ($trackResult as $trackResult){
   ?>
-  <tr>
-      <td><?php echo $trackResult['name']; ?></td>
-      <td><?php echo $trackResult['email']; ?></td>
-      <td><?php echo $trackResult['msg']; ?></td>
-      <td><a href="trackcontactus.php?action=del&id=<?php echo $trackResult["id"]; ?>"class="btnRemoveMessage"><img src="icon-delete.png" height="40"/>
+  <div style="padding: 20px; float: left;">
+  <table border ="1" cellspacing="0" cellpadding="10" style="font-size: 1.8em;">
+   <tr >
+      <td style="padding: 5px 15px; font-weight: bold;">Name</td>
+      <td style="padding: 5px 15px;"><?php echo $trackResult['name']; ?><a style="float: right;"href="trackcontactus.php?action=del&id=<?php echo $trackResult["id"]; ?>"class="btnRemoveMessage"><img src="icon-delete.png" height="25"/></td>
+    </tr>
+    <tr>
+      <td style="padding: 5px 15px; font-weight: bold;">Email</td>
+      <td style="padding: 5px 15px;"><?php echo $trackResult['email']; ?></td>
+    </tr>
+    <tr>
+      <td style="padding: 5px 15px; font-weight: bold;">Message</td>
+      <td style="padding: 15px 15px;"><div style="height: 400px; width: 400px; overflow: auto;"><?php echo $trackResult['msg']; ?></div></td>
      </tr>
+  </table>
+  </div>
   <?php
   }
   ?>
@@ -42,7 +49,7 @@ if((isset($_GET["action"])=="del")) {
     if(! $resultDel){
        die('Could not delete data:'.mysql_error());
     }else{
-       echo "<script>alert('Product has been deleted from the database.') ; window.location.href = 'trackcontactus.php'</script>";
+       echo "<script>alert('Feedback has been deleted.') ; window.location.href = 'trackcontactus.php'</script>";
     }
 }
 include("footer.php");
