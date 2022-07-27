@@ -86,12 +86,19 @@ h3 {
         $query    = "INSERT into `users` (username, password, email, create_datetime)
                      VALUES ('$username', '" . md5($password) . "', '$email', '$create_datetime')";
         $result   = mysqli_query($con, $query);
-        if ($result) {
+        /* $checkDuplicateQuery = "SELECT * FROM `users` WHERE username='$username'";
+        $duplicateResult = mysqli_query($con, $checkDuplicateQuery);
+        $duplicateRows = mysqli_num_rows($duplicateResult); */
+        
+        elseif ($result) {
             echo "<div class='form'>
                   <h3>You are registered successfully.</h3><br/>
                   <p class='link'>Click here to <a href='login.php'>Login</a></p>
                   </div>";
         } else {
+            if (errno()==1062){
+                echo "<script>alert('Username already exist.') ; window.location.href = 'registration.php'</script>";
+            }
             echo "<div class='form'>
                   <h3>Required fields are missing.</h3><br/>
                   <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>

@@ -51,7 +51,7 @@
               </div>
  
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+              I can say that the website of MC Watches is overall nicely done, they provide good customer service. Overall it is a good experience but still needs improvement compared to larger e-commerce sites.
               </p>
             </div>
           </div>
@@ -69,7 +69,7 @@
               </div>
  
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+              The product is amazing! Didn't expect the product and the service to be this good. Worth purchasing at this place.
               </p>
             </div>
           </div>

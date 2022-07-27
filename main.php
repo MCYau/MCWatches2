@@ -38,9 +38,8 @@
             <br><br>
                 <h1 style="font-size: 3.2em;">Welcome to MC Watches</h1>
                 <br>
-                <p style="font-size: 2.2em;"> MC Watches is an exclusive platform that enables users to search for brand of watches. 
-                    The reason that this site is</p>
-                <p style="font-size: 2.2em;"> Loews Portofino Bay Hotel—all the charm of Italy, with Florida sunshine and theme park fun guaranteed.</p>
+                <p style="font-size: 2.2em;"> MC Watches is an exclusive site that will bring the utmost experience for users that are seeking for the watch that they desire.
+We pride ourselves on having one of the most competent shopping systems offered with announcements at every process to inform you of your order status, as well as first-class customer service and support team who will be glad to assist you with any enquiry or problem, if one should arise.</p>
                 <br><br><br>
             </article>
     </main>

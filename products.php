@@ -157,8 +157,8 @@ if(isset($_SESSION["cart_item"])){
 				if(isset($_GET["action"]) && $_GET["action"]=="checkout"){
 					$address = $_POST['address'];
 					$zip = $_POST['zip'];
-					$checkoutsql = 'INSERT INTO orders VALUES (NULL, "'.$_SESSION['username'].'",
-					"'.$item['name'].'","'.$item['quantity'].'","'.$subTotal.'","'.$item['image'].'","'.$orderDateTime.'", "'.$address.'", "'.$zip.'")';
+					$checkoutsql = 'INSERT INTO orders VALUES (NULL,"'.$_SESSION['username'].'",
+					"'.$item['name'].'","'.$item['quantity'].'","'.$subTotal.'","'.$item['image'].'","'.$orderDateTime.'", "'.$address.'", "'.$zip.'",default)';
 					if(mysqli_query($con, $checkoutsql)){
 						echo "<script>alert('Order has been confirmed.') ; window.location.href = 'products.php?action=empty'</script>";
 					}else{
