@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2022 at 05:03 PM
+-- Generation Time: Jul 28, 2022 at 03:22 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -58,26 +58,32 @@ CREATE TABLE `orders` (
   `image` varchar(255) NOT NULL,
   `orderDate` datetime NOT NULL,
   `address` varchar(255) NOT NULL,
-  `zip` int(6) NOT NULL
+  `zip` int(6) NOT NULL,
+  `orderStatus` varchar(255) DEFAULT 'Order Received'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `userName`, `orderedItem`, `quantity`, `totalPrice`, `image`, `orderDate`, `address`, `zip`) VALUES
-(60, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:42:28', '', 0),
-(61, 'user1', 'FinePix Pro2 3D Camera', 1, 1500, 'image/facebook.png', '2022-07-23 15:47:19', '', 0),
-(62, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:47:19', '', 0),
-(63, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:50:39', '', 0),
-(64, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:59:35', '', 0),
-(65, 'user3', 'FinePix Pro2 3D Camera', 1, 1500, 'image/facebook.png', '2022-07-23 16:15:07', '', 0),
-(66, 'user3', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 16:15:07', '', 0),
-(67, 'user3', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 22:15:42', '', 0),
-(72, 'user1', 'test4156', 8, 8, 'image/MCwatchlogo.PNG', '2022-07-24 18:38:58', 'test address', 0),
-(73, 'user1', 'test4156', 1, 1, 'image/MCwatchlogo.PNG', '2022-07-24 19:31:17', 'hello world', 0),
-(74, 'user1', 'test4156', 1, 1, 'image/MCwatchlogo.PNG', '2022-07-24 19:34:12', 'you are very handsome', 999999),
-(75, 'user1', 'Rolex', 1, 1500, 'image/RolexWatch.jpg', '2022-07-26 20:48:10', 'test', 12345);
+INSERT INTO `orders` (`id`, `userName`, `orderedItem`, `quantity`, `totalPrice`, `image`, `orderDate`, `address`, `zip`, `orderStatus`) VALUES
+(60, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:42:28', '', 0, 'Order Received'),
+(61, 'user1', 'FinePix Pro2 3D Camera', 1, 1500, 'image/facebook.png', '2022-07-23 15:47:19', '', 0, 'Order Received'),
+(62, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:47:19', '', 0, 'Order Received'),
+(63, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:50:39', '', 0, 'Order Received'),
+(64, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:59:35', '', 0, 'Order Received'),
+(65, 'user3', 'FinePix Pro2 3D Camera', 1, 1500, 'image/facebook.png', '2022-07-23 16:15:07', '', 0, 'Order Received'),
+(66, 'user3', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 16:15:07', '', 0, 'Order Received'),
+(67, 'user3', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 22:15:42', '', 0, 'Order Received'),
+(72, 'user1', 'test4156', 8, 8, 'image/MCwatchlogo.PNG', '2022-07-24 18:38:58', 'test address', 0, 'Order Received'),
+(73, 'user1', 'test4156', 1, 1, 'image/MCwatchlogo.PNG', '2022-07-24 19:31:17', 'hello world', 0, 'Order Received'),
+(74, 'user1', 'test4156', 1, 1, 'image/MCwatchlogo.PNG', '2022-07-24 19:34:12', 'you are very handsome', 999999, 'Order Received'),
+(75, 'user1', 'Rolex', 1, 1500, 'image/RolexWatch.jpg', '2022-07-26 20:48:10', 'test', 12345, 'Order Received'),
+(76, 'admin', 'Tag Heuer Watch', 1, 500, 'image/TagHeuerWatch.png', '2022-07-28 00:55:21', 'test', 123, 'Order Delivered'),
+(77, 'admin', 'Casio G Shock Watch', 1, 200, 'image/CasioGShock.jpg', '2022-07-28 00:56:48', 'test', 123, ''),
+(78, 'admin', 'Rolex', 1, 2000, 'image/RolexWatch.jpg', '2022-07-28 00:59:33', 'test', 123, 'Order Received'),
+(79, 'admin', 'Tissot Watch', 1, 900, 'image/Tissot.jfif', '2022-07-28 01:00:10', 'test', 123, 'Order Received'),
+(80, 'admin', 'Citizen Watch', 1, 300, 'image/Citizen.jfif', '2022-07-28 20:58:47', 'test', 123, 'In Delivery');
 
 -- --------------------------------------------------------
 
@@ -133,7 +139,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `isAdmin`, `create_d
 (3, 'user2', 'user2@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2022-07-23 15:48:33'),
 (4, 'user3', 'user3@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2022-07-23 22:14:36'),
 (5, 'user4', 'user4@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2022-07-25 01:01:40'),
-(6, 'user5', 'user5@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2022-07-26 20:43:53');
+(6, 'user5', 'user5@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2022-07-26 20:43:53'),
+(29, 'user6', 'user6@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2022-07-28 20:55:55');
 
 --
 -- Indexes for dumped tables
@@ -162,7 +169,8 @@ ALTER TABLE `tblproduct`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -178,7 +186,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `tblproduct`
@@ -190,7 +198,7 @@ ALTER TABLE `tblproduct`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
