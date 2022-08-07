@@ -30,21 +30,21 @@ $adminRows = mysqli_num_rows($adminResult);
 
 <p>
                <label for="name">Product Name:</label>
-               <input type="text" name="name" id="name" style="margin-left: 60px;">
+               <input type="text" name="name" id="name" style="margin-left: 60px;" required>
             </p>
  
              
 <p>
    <br>
                <label for="code">Product Code:</label>
-               <input type="text" name="code" id="code" style="margin-left: 65px;">
+               <input type="text" name="code" id="code" style="margin-left: 65px;" required>
             </p>
  
              
 <p>
    <br>
                <label for="image">Image:</label>
-               <input class="form-control" type="file" name="uploadfile" value="" style="margin-left: 115px;"/>
+               <input class="form-control" type="file" name="uploadfile" value="" style="margin-left: 115px;" required/>
             </p>
 
             <p>
@@ -90,10 +90,10 @@ $adminRows = mysqli_num_rows($adminResult);
 <p>
    <br>
                <label for="price">Price:</label>
-               <input type="text" name="price" id="price" style="margin-left: 125px;">
+               <input type="text" name="price" id="price" style="margin-left: 125px;" required>
             </p>
  <br>
-            <input type="submit" value="Submit" style="margin-left: 300px; margin-bottom: 20px; padding: 7px;">
+            <input type="submit" value="Submit" style="margin-left: 300px; margin-bottom: 20px; padding: 7px; cursor: pointer;">
          </form>
          
       </div>
@@ -140,7 +140,7 @@ $adminRows = mysqli_num_rows($adminResult);
   <br>
 
    <div class="allOrderResult-container" style="margin: 50px 0px;">
-   <h1 style="text-align: center; font-size: 3.2em;">Order History</h1>
+   <h1 style="text-align: center; font-size: 3.2em;">All Orders</h1>
    <?php
    $allOrderSql = 'SELECT * FROM orders';
    $allOrderQuery = mysqli_query($con, $allOrderSql);
@@ -148,7 +148,7 @@ $adminRows = mysqli_num_rows($adminResult);
    foreach ($allOrderResult as $allOrderResult){
       ?>
       <form method="post" action="admin.php?update&id=<?php echo $allOrderResult["id"]; ?>">
-         <div class="allOrderResult-table" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; height:490px; width: 560px; padding: 10px;">
+         <div class="allOrderResult-table" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; height:540px; width: 560px; padding: 10px;">
          <div style="text-align: center;"><img src="<?php echo $allOrderResult["image"]; ?>" height="150px"/></td></div>
          <div  style="margin:5px 20px; font-weight:bold; font-size: 1.5em;"><h3 style="color: rgba(0, 136, 169, 1)"><?php echo $allOrderResult["orderedItem"];?><h3></div>
          <div  style="margin:5px 20px; font-size: 1.2em; font-weight:bold;">Order ID<b style="margin-left: 65px;"><?php echo $allOrderResult["id"];?></b></div>
@@ -166,7 +166,7 @@ $adminRows = mysqli_num_rows($adminResult);
                <option value="In Delivery">In Delivery</option> 
                <option value="Order Delivered">Order Delivered</option>  
             </select>
-         <div style="margin-top: 10px;"><input type="submit" name="submit" value="Update"></a></div>
+         <div style="margin-top: 10px;"><input type="submit" name="submit" value="Update" style="padding: 7px; cursor: pointer;"></a></div>
          </div>
       </form>
    </div>

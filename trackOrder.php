@@ -19,7 +19,7 @@ $trackResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
 foreach ($trackResult as $trackResult){
     ?>
     <div class="trackitem-container">
-    <div class="trackitem-table" style="background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; height:400px; width: 560px; float: left; padding: 10px;">
+    <div class="trackitem-table" style="background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; height:450px; width: 560px; float: left; padding: 10px;">
     <div style="text-align: center;"><img src="<?php echo $trackResult["image"]; ?>" height="150px" class="tracking-cart" /></td></div>
     <div  style="margin:5px 20px; font-weight:bold; font-size: 1.5em;"><h3 style="color: rgba(0, 136, 169, 1)"><?php echo $trackResult["orderedItem"];?><h3></div>
     <div  style="margin:5px 20px; font-size: 1.2em; font-weight:bold;">Order ID<b style="margin-left: 65px;"><?php echo $trackResult["id"];?></b></div>

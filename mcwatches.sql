@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2022 at 03:22 PM
+-- Generation Time: Aug 07, 2022 at 06:35 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -39,9 +39,9 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`id`, `name`, `email`, `msg`) VALUES
-(4, 'test1234', 'testemail', 'I was dealing with the same issue and could not figure it out. When I tried to link the foreign keys to my join table, the query would fail with that same 1050 error message and it would only keep the first relationship I had created.\r\n\r\nI noticed that phpmyadmin automatically gave the constraint it kept a name, I simply copied that name (under \"Constrain name\") and replaced the \"1\" with a \"2\" and ran the query again, no problem. Both relationships were saved.'),
-(5, 'name1', 'test', 'hellow world 2'),
-(6, 'test', 'testemail', '123231');
+(4, 'user3', 'user3@gmail.com', 'I was dealing with the same issue and could not figure it out. When I tried to link the foreign keys to my join table, the query would fail with that same 1050 error message and it would only keep the first relationship I had created.\r\n\r\nI noticed that phpmyadmin automatically gave the constraint it kept a name, I simply copied that name (under \"Constrain name\") and replaced the \"1\" with a \"2\" and ran the query again, no problem. Both relationships were saved.'),
+(5, 'user1', 'user1@gmail.com', 'Some feedback...'),
+(10, 'user6', 'user6@gmail.com', 'Some queries...');
 
 -- --------------------------------------------------------
 
@@ -67,23 +67,14 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `userName`, `orderedItem`, `quantity`, `totalPrice`, `image`, `orderDate`, `address`, `zip`, `orderStatus`) VALUES
-(60, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:42:28', '', 0, 'Order Received'),
-(61, 'user1', 'FinePix Pro2 3D Camera', 1, 1500, 'image/facebook.png', '2022-07-23 15:47:19', '', 0, 'Order Received'),
-(62, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:47:19', '', 0, 'Order Received'),
-(63, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:50:39', '', 0, 'Order Received'),
-(64, 'user1', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 15:59:35', '', 0, 'Order Received'),
-(65, 'user3', 'FinePix Pro2 3D Camera', 1, 1500, 'image/facebook.png', '2022-07-23 16:15:07', '', 0, 'Order Received'),
-(66, 'user3', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 16:15:07', '', 0, 'Order Received'),
-(67, 'user3', 'Casio', 1, 600, 'image/orientstar.jpeg', '2022-07-23 22:15:42', '', 0, 'Order Received'),
-(72, 'user1', 'test4156', 8, 8, 'image/MCwatchlogo.PNG', '2022-07-24 18:38:58', 'test address', 0, 'Order Received'),
-(73, 'user1', 'test4156', 1, 1, 'image/MCwatchlogo.PNG', '2022-07-24 19:31:17', 'hello world', 0, 'Order Received'),
-(74, 'user1', 'test4156', 1, 1, 'image/MCwatchlogo.PNG', '2022-07-24 19:34:12', 'you are very handsome', 999999, 'Order Received'),
-(75, 'user1', 'Rolex', 1, 1500, 'image/RolexWatch.jpg', '2022-07-26 20:48:10', 'test', 12345, 'Order Received'),
-(76, 'admin', 'Tag Heuer Watch', 1, 500, 'image/TagHeuerWatch.png', '2022-07-28 00:55:21', 'test', 123, 'Order Delivered'),
-(77, 'admin', 'Casio G Shock Watch', 1, 200, 'image/CasioGShock.jpg', '2022-07-28 00:56:48', 'test', 123, ''),
-(78, 'admin', 'Rolex', 1, 2000, 'image/RolexWatch.jpg', '2022-07-28 00:59:33', 'test', 123, 'Order Received'),
-(79, 'admin', 'Tissot Watch', 1, 900, 'image/Tissot.jfif', '2022-07-28 01:00:10', 'test', 123, 'Order Received'),
-(80, 'admin', 'Citizen Watch', 1, 300, 'image/Citizen.jfif', '2022-07-28 20:58:47', 'test', 123, 'In Delivery');
+(83, 'user1', 'Casio G-Shock GM-110SN-2A', 3, 1107, 'image/GShockWatch.webp', '2022-08-08 00:24:17', '289 Jurong East St 30', 640289, 'In Delivery'),
+(84, 'user1', 'Citizen HAKUTO-R', 1, 3500, 'image/CitizenWatch.jpg', '2022-08-08 00:24:17', '289 Jurong East St 30', 640289, 'Order Delivered'),
+(85, 'user1', 'Tissot PR 100 SPORT CHIC CHRONOGRAPH', 2, 1880, 'image/Tissot.jfif', '2022-08-08 00:24:17', '289 Jurong East St 30', 640289, 'Order Received'),
+(86, 'user2', 'Tag Heuer Formula 1 X Red Bull Racing', 1, 2800, 'image/TagHeuerWatch.webp', '2022-08-08 00:27:17', '369 Paris Ris Dr 3', 510369, 'Order Delivered'),
+(87, 'user2', 'Gucci YA141501 Diamantissima', 4, 5000, 'image/GucciWatch.jfif', '2022-08-08 00:27:17', '369 Paris Ris Dr 3', 510369, 'Order Received'),
+(88, 'user3', 'Rolex GMT-MASTER II', 5, 575000, 'image/RolexWatch.png', '2022-08-08 00:28:57', '1 Serangoon Cres ', 550288, 'Order Received'),
+(89, 'admin', 'Tommy Hilfiger Blue Men\'s Watch', 1, 400, 'image/TommyHilfigerWatch.webp', '2022-08-08 00:31:29', '50 One-north Cres', 637896, 'Order Received'),
+(90, 'admin', 'Seiko SSB377P1 QUARTZ CHRONOGRAPH', 1, 900, 'image/Seiko.png', '2022-08-08 00:31:29', '50 One-north Cres', 637896, 'Order Delivered');
 
 -- --------------------------------------------------------
 
@@ -105,14 +96,14 @@ CREATE TABLE `tblproduct` (
 --
 
 INSERT INTO `tblproduct` (`id`, `name`, `descp`, `code`, `image`, `price`) VALUES
-(1, 'Casio G Shock Watch', 'This is a Casio G Shock Watch', 'GSH001', 'image/CasioGShock.jpg', 200.00),
-(26, 'Tag Heuer Watch', 'this is a Tag Heuer watch', 'TAG123', 'image/TagHeuerWatch.png', 500.00),
-(27, 'Rolex', 'This is a Rolex Watch', 'ROL1234', 'image/RolexWatch.jpg', 2000.00),
-(28, 'Tommy Hilfiger Watch', 'This is a Tommy Hilfiger Watch', 'TOM123', 'image/TommyHilfiger.jpg', 600.00),
-(29, 'Citizen Watch', 'This is a Citizen Watch', 'CIT001', 'image/Citizen.jfif', 300.00),
-(30, 'Gucci Watch', 'This is a Gucci Watch', 'GUC001', 'image/Guuci.jfif', 800.00),
-(31, 'Seiko Watch', 'Case Material: Stainless steel Dial: blue Dimensions: 42.5mm Crystal: Hardlex Water Resistance: 10 bar Crown: Push/pull Movement: 4R36 Strap/bracelet: stainless steel.', 'SEI001', 'image/Seiko.png', 900.00),
-(32, 'Tissot Watch', 'This is a Tissot Watch', 'TIS001', 'image/Tissot.jfif', 900.00);
+(1, 'Casio G-Shock GM-110SN-2A', 'Light up the dark with watches inspired by the neon glow of late-night skylines.\r\nEvoking midnight darkness, the matte black urethane band provides the perfect canvas for the multicolored ribbons of light that adorn the urban sky at night.', 'GSH001', 'image/GShockWatch.webp', 369.00),
+(26, 'Tag Heuer Formula 1 X Red Bull Racing', 'Speed into victory with the TAG Heuer Formula 1 Red Bull Racing Special Edition. The sportive look and dynamic design of this unique collection makes for a bold, action-packed chronograph that sets the pace by celebrating two...', 'TAG123', 'image/TagHeuerWatch.webp', 2800.00),
+(28, 'Tommy Hilfiger Blue Men\'s Watch', 'An elevated classic with a new twist. This automatic collection features a skeleton dial with an exposed sub eye. The 45 MM case is available in Stainless-Steel and Black IP, paired with H-Link bracelets, Italian Leather Strap, and Rubber straps. 5 ATM', 'TOM123', 'image/TommyHilfigerWatch.webp', 400.00),
+(29, 'Citizen HAKUTO-R', 'Created as the second collaboration with the HAKUTO-R Japanese lunar exploration program and ispace, this limited-edition model depicts the unique lunar surface patterns with newly developed Recrystallized Titanium.', 'CIT001', 'image/CitizenWatch.jpg', 3500.00),
+(30, 'Gucci YA141501 Diamantissima', 'Gucci Diamantissima stainless steel watch\r\nStyle number: YA141501\r\nDeployment clasp fastening\r\nRound face, quartz movement, diamante pattern dial with Gucci logo at 12 o’clock, patent leather strap\r\nDiameter: 27mm\r\nWater resistant up to 50m\r\nTwo-year warranty\r\nMade in Switzerland', 'GUC001', 'image/GucciWatch.jfif', 1250.00),
+(31, 'Seiko SSB377P1 QUARTZ CHRONOGRAPH', 'Case Diameter: 41.5 mm\r\nCase Thickness: -\r\nCase Length: -\r\nGlass: Hardlex\r\nCase Material: Stainless steel\r\nBand Material: Stainless steel\r\nThree-Fold Clasp With Push-Button Release\r\nDate display\r\nSmall second hand\r\nWater Resistant: 10 BAR', 'SEI001', 'image/Seiko.png', 900.00),
+(32, 'Tissot PR 100 SPORT CHIC CHRONOGRAPH', 'With different styles to choose from, every woman will find something to love in these Sport&Chic watches that are also practical, thanks to indexes and hands set with luminescent materials providing perfect visibility. ', 'TIS001', 'image/Tissot.jfif', 940.00),
+(39, 'Rolex GMT-MASTER II', 'This model features a meteorite dial and a two-colour Cerachrom bezel insert in red and blue ceramic. Designed to show the time in two different time zones simultaneously during intercontinental flights, the GMT-Master II has come to be recognized for its robustness and versatile appearance.', 'ROL123', 'image/RolexWatch.png', 115000.00);
 
 -- --------------------------------------------------------
 
@@ -180,19 +171,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `tblproduct`
 --
 ALTER TABLE `tblproduct`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `users`

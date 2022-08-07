@@ -98,7 +98,7 @@ if(isset($_SESSION["cart_item"])){
                         </div>
                         <div>
                             <label for="zip">Zip</label>
-                            <input type="number" name="zip" required placeholder="6 digits Zip code" style="font-size: 1.1em; padding-left:10px; margin-left: 115px;">
+                            <input type="text" maxlength="6" name="zip" required placeholder="6 digits Zip code" style="font-size: 1.1em; padding-left:10px; margin-left: 115px;">
                         </div>
                     </div>
                     <h2 style="margin-bottom: 20px; margin-top: 100px;">
@@ -106,16 +106,45 @@ if(isset($_SESSION["cart_item"])){
                     </h2>
                     <div class="cc-num" style="margin-bottom: 10px;">
                         <label for="card-num">Credit Card No.</label>
-                        <input type="number" name="card-num" style="font-size: 1.1em; padding-left:10px; margin-left: 15px;" required placeholder="xxxx xxxx xxxx xxxx" >
+                        <input type="text" maxlength="16" name="card-num" style="font-size: 1.1em; padding-left:10px; margin-left: 15px;" required placeholder="xxxx xxxx xxxx xxxx" >
                     </div>
                     <div class="cc-info">
                         <div style="margin-bottom: 10px;">
                             <label for="card-num">Expiry Date</label>
-                            <input type="text" name="expire" style="font-size: 1.1em; padding-left:10px; margin-left: 45px;" required placeholder="mm/yy">
+							<select style="margin-left: 11%; font-size: 1.1em;">
+								<option>Month</option>
+								<option>01</option>
+								<option>02</option>
+								<option>03</option>
+								<option>04</option>
+								<option>05</option>
+								<option>06</option>
+								<option>07</option>
+								<option>08</option>
+								<option>09</option>
+								<option>10</option>
+								<option>11</option>
+								<option>12</option>
+							</select>
+							<select style="font-size: 1.1em;">
+								<option>Year</option>
+								<option>2022</option>
+								<option>2023</option>
+								<option>2024</option>
+								<option>2025</option>
+								<option>2026</option>
+								<option>2027</option>
+								<option>2028</option>
+								<option>2029</option>
+								<option>2030</option>
+								<option>2031</option>
+								<option>2032</option>
+								<option>2033</option>
+							</select>							
                         </div>
                         <div>
                             <label for="card-num">CCV</label>
-                            <input type="number" name="security" style="font-size: 1.1em; padding-left:10px; margin-left: 105px;" required placeholder="xxx">
+                            <input type="text" maxlength="3" name="security" style="font-size: 1.1em; padding-left:10px; margin-left: 105px;" required placeholder="xxx">
                         </div>
                     </div>
                     <div class="btns">
@@ -194,7 +223,7 @@ if(isset($_SESSION["cart_item"])){
 	if (!empty($product_array)) { 
 		foreach($product_array as $key=>$value){
 	?>
-		<div class="product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; min-height: 500px; max-height: 500px;">
+		<div class="product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; min-height: 600px; max-height: 500px;">
 			<form method="post" action="products.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
 			<div class="product-image" style="height: 300px; width: 500px; background-color: #FFF; display:flex; justify-content:center" ><img src="<?php echo $product_array[$key]["image"]; ?>" height="300"></div>
 			<div class="product-tile-footer">
