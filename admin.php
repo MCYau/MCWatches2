@@ -113,7 +113,7 @@ $adminRows = mysqli_num_rows($adminResult);
       <?php
          foreach ($item as $item){
             ?>
-                <div class="existing-product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; max-height: 450px; min-height: 450px;">
+                <div class="existing-product-item" style="float: left; background: #ffffff; margin: 30px 30px 0px 0px; border: #E0E0E0 1px solid; height: 520px; width: 520px;">
                     <form method="post" action="admin.php?action=del">
                     <div class="existingproduct-image" style="height: 200px; width: 500px; background-color: #FFF; display:flex; justify-content:center" ><img src="<?php echo $item["image"]; ?>" height="200"></div>
                     <div class="existingproduct-title" style="margin-bottom: 20px; margin-top:10px; margin-left:20px; font-weight:bold; font-size: 1.5em;"><?php echo $item["name"]; ?></div>
